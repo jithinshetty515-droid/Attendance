@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reports</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    <a href="{{ url_for('print_qr') }}">Print QR</a>
+    <a href="{{ url_for('send_email_report') }}">Email Report</a>
+  </nav>
+
+  <h2>Attendance Report</h2>
+  <table>
+    <tr><th>Name</th><th>Roll No</th><th>Present Days</th><th>Total Days</th><th>%</th></tr>
+    {% for r in attendance_report %}
+    <tr>
+      <td>{{ r['name'] }}</td>
+      <td>{{ r['roll_no'] }}</td>
+      <td>{{ r['present_days'] }}</td>
+      <td>{{ r['total_days'] }}</td>
+      <td>{{ r['percentage'] }}%</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Marks Report</h2>
+  <table>
+    <tr><th>Name</th><th>Roll No</th><th>Subject</th><th>Marks</th></tr>
+    {% for m in marks_report %}
+    <tr>
+      <td>{{ m['name'] }}</td>
+      <td>{{ m['roll_no'] }}</td>
+      <td>{{ m['subject'] }}</td>
+      <td>{{ m['marks'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Homework Report</h2>
+  <table>
+    <tr><th>Subject</th><th>Task</th><th>Due Date</th></tr>
+    {% for h in homework_report %}
+    <tr>
+      <td>{{ h['subject'] }}</td>
+      <td>{{ h['task'] }}</td>
+      <td>{{ h['due_date'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

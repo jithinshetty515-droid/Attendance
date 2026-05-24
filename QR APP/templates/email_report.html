@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Report</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    <a href="{{ url_for('report') }}">Reports</a>
+  </nav>
+  <h2>Send Email Report</h2>
+  {% if message %}<div class="msg">{{ message }}</div>{% endif %}
+  <form method="POST">
+    <input type="email" name="recipient" placeholder="Recipient Email" required>
+    <button type="submit">Send Report Email</button>
+  </form>
+</div>
+</body>
+</html>

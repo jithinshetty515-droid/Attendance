@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Attendance System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>QR Attendance System</h1>
+  <nav>
+    <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('login') }}">Student Login</a>
+    <a href="{{ url_for('admin_login') }}">Admin Login</a>
+    <a href="{{ url_for('scan') }}">Scan QR</a>
+  </nav>
+  <div class="card">
+    <p>Manage attendance, marks, homework, reports, QR printing, and exports.</p>
+  </div>
+</div>
+</body>
+</html>

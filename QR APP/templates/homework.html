@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    <a href="{{ url_for('report') }}">Reports</a>
+  </nav>
+  <h2>Add Homework</h2>
+  <form method="POST">
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="text" name="task" placeholder="Task" required>
+    <input type="date" name="due_date" required>
+    <button type="submit">Save</button>
+  </form>
+
+  <table>
+    <tr><th>Subject</th><th>Task</th><th>Due Date</th></tr>
+    {% for h in homework_list %}
+    <tr>
+      <td>{{ h['subject'] }}</td>
+      <td>{{ h['task'] }}</td>
+      <td>{{ h['due_date'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    <a href="{{ url_for('report') }}">Reports</a>
+  </nav>
+  <h2>Add Marks</h2>
+  <form method="POST">
+    <select name="student_id" required>
+      <option value="">Select Student</option>
+      {% for s in students %}
+      <option value="{{ s['id'] }}">{{ s['name'] }} ({{ s['roll_no'] }})</option>
+      {% endfor %}
+    </select>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="number" name="marks" placeholder="Marks" min="0" max="100" required>
+    <button type="submit">Save</button>
+  </form>
+
+  <table>
+    <tr><th>Name</th><th>Roll No</th><th>Subject</th><th>Marks</th></tr>
+    {% for m in mark_list %}
+    <tr>
+      <td>{{ m['name'] }}</td>
+      <td>{{ m['roll_no'] }}</td>
+      <td>{{ m['subject'] }}</td>
+      <td>{{ m['marks'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

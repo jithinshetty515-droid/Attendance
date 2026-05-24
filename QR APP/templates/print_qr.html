@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print QR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .qr-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 20px; }
+    .qr-card { border: 1px solid #ccc; padding: 12px; text-align: center; }
+    .qr-card img { width: 150px; height: 150px; }
+    @media print { nav, .btn { display:none; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    <a href="#" onclick="window.print()">Print Page</a>
+  </nav>
+  <h2>Bulk QR Printing</h2>
+  <div class="qr-grid">
+  {% for s in students %}
+<div class="qr-card">
+  <img src="{{ url_for('qr_image', student_id=s['id']) }}" alt="QR Code">
+  <p>{{ s['name'] }}</p>
+  <p>{{ s['roll_no'] }}</p>
+</div>
+{% endfor %}

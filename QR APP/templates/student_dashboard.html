@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </nav>
+  <h2>Welcome, {{ student['name'] }}</h2>
+  <div class="card">
+    <p>Roll No: {{ student['roll_no'] }}</p>
+    <p>Attendance: {{ attendance_percentage }}%</p>
+    <p>Present Days: {{ present_days }} / {{ total_days }}</p>
+    <img src="{{ url_for('static', filename='../qr_codes/' ~ student['id'] ~ '.png') }}" alt="QR Code" style="max-width:250px;">
+  </div>
+
+  <h3>Your Marks</h3>
+  <table>
+    <tr><th>Subject</th><th>Marks</th></tr>
+    {% for m in marks %}
+    <tr><td>{{ m['subject'] }}</td><td>{{ m['marks'] }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h3>Homework</h3>
+  <table>
+    <tr><th>Subject</th><th>Task</th><th>Due Date</th></tr>
+    {% for h in homework_list %}
+    <tr><td>{{ h['subject'] }}</td><td>{{ h['task'] }}</td><td>{{ h['due_date'] }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

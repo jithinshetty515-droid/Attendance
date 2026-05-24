@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scan QR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav><a href="{{ url_for('index') }}">Home</a></nav>
+  <h2>Scan QR Code</h2>
+  <div id="reader"></div>
+</div>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+  function onScanSuccess(decodedText) {
+    window.location.href = "/mark_attendance/" + decodedText;
+  }
+  let scanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+  scanner.render(onScanSuccess);
+</script>
+</body>
+</html>

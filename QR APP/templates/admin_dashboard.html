@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('marks') }}">Marks</a>
+    <a href="{{ url_for('homework') }}">Homework</a>
+    <a href="{{ url_for('report') }}">Reports</a>
+    <a href="{{ url_for('print_qr') }}">Print QR</a>
+    <a href="{{ url_for('send_email_report') }}">Email Report</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </nav>
+
+  <h2>Admin Dashboard</h2>
+  <div class="card">
+    <a class="btn" href="{{ url_for('export_attendance_csv') }}">Export Attendance CSV</a>
+    <a class="btn" href="{{ url_for('export_marks_csv') }}">Export Marks CSV</a>
+    <a class="btn" href="{{ url_for('export_homework_csv') }}">Export Homework CSV</a>
+    <a class="btn" href="{{ url_for('export_report_pdf') }}">Download PDF</a>
+  </div>
+
+  <h3>Students</h3>
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Roll No</th></tr>
+    {% for s in students %}
+    <tr><td>{{ s['id'] }}</td><td>{{ s['name'] }}</td><td>{{ s['roll_no'] }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>
